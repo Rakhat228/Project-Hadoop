@@ -8,8 +8,14 @@ import pickle
 from io import BytesIO
 import xgboost 
 
-
-def classify(df_test):
+dataset = st.file_uploader("UPLOAD TEXT FILE", type = ['csv'])
+if dataset is None:
+    st.button('Classify', on_click=classify, disabled=True)
+else:
+    df_test = pd.read_csv(dataset, engine='python', delimiter = ',') 
+    df_test
+    
+def classify():
     
     df_test = df_test.drop(df_test[df_test['text'] == '[Music]'].index)
     tfidf = pickle.load(open('data/vectorizer.pkl', 'rb'))
@@ -39,13 +45,6 @@ def classify(df_test):
     
     zzz = st.success('Successfully done!', icon="✅")
     return (zzz, down())
-
-
-dataset = st.file_uploader("UPLOAD TEXT FILE", type = ['csv'])
-if dataset is None:
-    st.button('Classify', on_click=classify, disabled=True)
-else:
-    df_test = pd.read_csv(dataset, engine='python', delimiter = ',') 
-    st.write(df_test)
-st.button('Classify', on_click=classify(df_test), disabled=False)
+    
+st.button('Classify', on_click=classify(), disabled=False)
 
