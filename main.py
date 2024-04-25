@@ -25,14 +25,14 @@ def classify(df_test):
     df_test2
 
 
-     def to_excel(df):
+     def to_excel(df_test2):
            output = BytesIO()
            writer = pd.ExcelWriter(output, engine='openpyxl')
-           df.to_excel(writer, index=False, sheet_name='Sheet1') 
+           df_test2.to_excel(writer, index=False, sheet_name='Sheet1') 
            writer.close()
            processed_data = output.getvalue()
            return processed_data
-        df_xlsx = to_excel(df)
+        df_xlsx = to_excel(df_test2)
         st.download_button(label='📥 Скачать готовый файл',
                                        data = df_xlsx ,
                                        file_name= 'Output.xlsx') 
