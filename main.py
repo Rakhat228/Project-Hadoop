@@ -13,23 +13,6 @@ from io import BytesIO
 
 def classify():
     
-    df_train = pd.read_csv(r'C:/Users/r.zhanabai/Documents/project/training_text.zip', engine='python', sep='\|\|', skiprows=1, names=["ID", "Text"]).set_index('ID')
-    df_train2 = pd.read_csv(r'C:/Users/r.zhanabai/Documents/project/training_variants.zip').set_index('ID')
-    train = pd.merge(df_train2, df_train, how='inner', on='ID').fillna('')
-    
-    test = pd.merge(df_test, df_test2, how='inner', on='ID').fillna('')
-    
-    tfidf = TfidfVectorizer(min_df=1, ngram_range=(1, 2), max_features=500)
-    
-    text_train = tfidf.fit_transform(train['Text'].values).toarray()
-    text_test = tfidf.transform(test['Text'].values).toarray()
-    
-    
-    train2 = pd.DataFrame(text_train, index=train.index)  
-    test2 = pd.DataFrame(text_test, index=test.index)
-    
-    pickled_model = pickle.load(open(r'C:\Users\r.zhanabai\Documents\project\model.pkl', 'rb'))
-    
     pred = pickled_model.predict(matrix_test)
     
     submit = pd.DataFrame(pred, columns=[f'class{i}' for i in range(1, 10)])
