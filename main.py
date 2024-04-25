@@ -46,5 +46,5 @@ def classify():
     zzz = st.success('Successfully done!', icon="✅")
     return (zzz, down())
     
-st.button('Classify', on_click=classify(), disabled=False)
+st.button('Classify', on_click=classify, disabled=False)
 
