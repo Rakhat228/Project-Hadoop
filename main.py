@@ -13,27 +13,18 @@ from io import BytesIO
 
 def classify():
     
+    df_test = df_test.drop(df_test[df_test['text'] == '[Music]'].index)
     tfidf = pickle.load(open('data/vectorizer.pkl', 'rb'))
     model = pickle.load(open('data/model.pkl', 'rb'))
 
-    tfidf
-    
-    submit = pd.DataFrame(pred, columns=[f'class{i}' for i in range(1, 10)])
-    submit.insert(loc=0, column='ID', value=pd.merge(df_test2, df_test, how='inner', on='ID').fillna('').index)
-  
-    max_class_value = []
-    for j in range(len(pred)):
-        for i in range(9):
-            if max(pred[j]) == pred[j][i]:
-                max_class_value.append(i+1)
-              
-    df_test2['Class'] = max_class_value
-    'Classifier result'
-    submit
+    X_test = tfidf.transform(df_test['text'])
+    y_pred = model.predict(X_test)
+    y_pred_1 = (y_pred > 0.9096).astype(int)
+    df_test2 = df_test
+    df_test2['is_sponsorship'] = y_pred_1
     'Final output'
     df_test2
-   
-    
+
     def down():
         def to_excel(df_test2):
             output = BytesIO()
