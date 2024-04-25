@@ -9,7 +9,7 @@ from io import BytesIO
 import xgboost 
 
 
-def classify(df_test):
+def classify():
     
     df_test = df_test.drop(df_test[df_test['text'] == '[Music]'].index)
     tfidf = pickle.load(open('data/vectorizer.pkl', 'rb'))
