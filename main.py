@@ -13,7 +13,7 @@ from io import BytesIO
 
 def classify():
     
-    df_test = df_test.drop(df_test[df_test['text'] == '[Music]'].index)
+   # df_test = df_test.drop(df_test[df_test['text'] == '[Music]'].index)
     tfidf = pickle.load(open('data/vectorizer.pkl', 'rb'))
     model = pickle.load(open('data/model.pkl', 'rb'))
 
