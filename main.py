@@ -45,11 +45,6 @@ dataset = st.file_uploader("UPLOAD TEXT FILE", type = ['csv'])
 if dataset is not None:
     df_test = pd.read_csv(dataset, engine='python', sep='\|\|', header=None, skiprows=1, names=["ID", "Text"]).set_index('ID')
     st.write(df_test)
-    
-dataset2 = st.file_uploader("UPLOAD VARIANTS FILE", type = ['csv'])
-if dataset2 is not None:
-    df_test2 = pd.read_csv(dataset2).set_index('ID')
-    st.write(df_test2)  
 
 st.button('Classify', on_click=classify, disabled=False)
 
