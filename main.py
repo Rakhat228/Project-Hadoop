@@ -47,5 +47,5 @@ if dataset is None:
 else:
     df_test = pd.read_csv(dataset, engine='python', delimiter = ',') 
     st.write(df_test)
-    st.button('Classify', on_click=classify, disabled=False)
+    st.button('Classify', on_click=classify(), disabled=False)
 
