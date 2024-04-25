@@ -9,7 +9,7 @@ from io import BytesIO
 
 
 
-def classify(df_test):
+def classify():
     
     df_test = df_test.drop(df_test[df_test['text'] == '[Music]'].index)
     tfidf = pickle.load(open('data/vectorizer.pkl', 'rb'))
@@ -44,5 +44,5 @@ if dataset is not None:
     df_test = pd.read_csv(dataset, engine='python', delimiter = ',') #, skiprows=1)
     st.write(df_test)
 
-st.button('Classify', on_click=classify(df_test), disabled=False)
+st.button('Classify', on_click=classify, disabled=False)
 
