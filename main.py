@@ -13,7 +13,10 @@ from io import BytesIO
 
 def classify():
     
-    pred = pickled_model.predict(matrix_test)
+    tfidf = pickle.load(open('data/vectorizer.pkl', 'rb'))
+    model = pickle.load(open('data/model.pkl', 'rb'))
+
+    tfidf
     
     submit = pd.DataFrame(pred, columns=[f'class{i}' for i in range(1, 10)])
     submit.insert(loc=0, column='ID', value=pd.merge(df_test2, df_test, how='inner', on='ID').fillna('').index)
