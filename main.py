@@ -42,8 +42,10 @@ def classify():
 
 
 dataset = st.file_uploader("UPLOAD TEXT FILE", type = ['csv'])
-if dataset is not None:
-    df_test = pd.read_csv(dataset, engine='python', delimiter = ',') #, skiprows=1)
+if dataset is None:
+    st.button('Classify', on_click=classify, disabled=True)
+else:
+    df_test = pd.read_csv(dataset, engine='python', delimiter = ',') 
     st.write(df_test)
     st.button('Classify', on_click=classify, disabled=False)
 
