@@ -6,16 +6,9 @@ from sklearn.metrics import accuracy_score, log_loss
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 import streamlit as st
-
-import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.decomposition import TruncatedSVD
-import xgboost as xgb
 import pickle
 from io import BytesIO
-import seaborn as sns
-sns.set()
-import streamlit as st
+
 
 
 def classify():
