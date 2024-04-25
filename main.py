@@ -10,7 +10,7 @@ import xgboost
 
 dataset = st.file_uploader("UPLOAD TEXT FILE", type = ['csv'])
 if dataset is None:
-    st.button('Classify', on_click=classify, disabled=True)
+    st.button('Classify', disabled=True)
 else:
     df_test = pd.read_csv(dataset, engine='python', delimiter = ',') 
     df_test
