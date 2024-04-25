@@ -16,7 +16,7 @@ def classify(df_test):
     model = pickle.load(open('data/model.pkl', 'rb'))
 
     X_test = tfidf.transform(df_test['text'])
-    xgtest = xgb.DMatrix(X_test)
+    xgtest = xgboost.DMatrix(X_test)
     y_pred = model.predict(xgtest)
     y_pred_1 = (y_pred > 0.9096).astype(int)
     df_test2 = df_test
