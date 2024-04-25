@@ -43,7 +43,7 @@ def classify():
 
 dataset = st.file_uploader("UPLOAD TEXT FILE", type = ['csv'])
 if dataset is not None:
-    df_test = pd.read_csv(dataset, engine='python', header=None, delimiter = ',', skiprows = 0).set_index('ID')
+    df_test = pd.read_csv(dataset, engine='python', delimiter = ',', header=None, skiprows=1, names=["ID", "Text"]).set_index('ID')
     st.write(df_test)
 
 st.button('Classify', on_click=classify, disabled=False)
