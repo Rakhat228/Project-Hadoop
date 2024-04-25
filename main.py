@@ -37,18 +37,6 @@ def classify(df_test):
                                        data = df_xlsx ,
                                        file_name= 'Output.xlsx') 
     
-    # def down():
-    #     def to_excel(df_test2):
-    #         output = BytesIO()
-    #         writer = pd.ExcelWriter(output, engine='openpyxl')
-    #         df_test2.to_excel(writer, index=False, sheet_name='Sheet1') 
-    #         writer.save()
-    #         processed_data = output.getvalue()
-    #         return processed_data
-    #     df_xlsx = to_excel(df_test2)
-    #     st.download_button(label='📥 Press to download',
-    #                                     data = df_xlsx ,
-    #                                     file_name = 'Final output.xlsx')
     zzz = st.success('Successfully done!', icon="✅")
     return (zzz, down())
 
@@ -57,5 +45,5 @@ dataset = st.file_uploader("UPLOAD TEXT FILE", type = ['csv'])
 if dataset is not None:
     df_test = pd.read_csv(dataset, engine='python', delimiter = ',') #, skiprows=1)
     st.write(df_test)
-    st.button('Classify', on_click=classify(df_test), disabled=False)
+    st.button('Classify', on_click=classify, disabled=False)
 
