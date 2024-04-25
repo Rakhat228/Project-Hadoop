@@ -7,15 +7,8 @@ import streamlit as st
 import pickle
 from io import BytesIO
 import xgboost 
-
-dataset = st.file_uploader("UPLOAD TEXT FILE", type = ['csv'])
-if dataset is None:
-    st.button('Classify', disabled=True)
-else:
-    df_test = pd.read_csv(dataset, engine='python', delimiter = ',') 
-    df_test
     
-def classify():
+def classify(df_test):
     
     df_test = df_test.drop(df_test[df_test['text'] == '[Music]'].index)
     tfidf = pickle.load(open('data/vectorizer.pkl', 'rb'))
@@ -46,5 +39,21 @@ def classify():
     zzz = st.success('Successfully done!', icon="✅")
     return (zzz, down())
     
-st.button('Classify', on_click=classify, disabled=False)
+#st.button('Classify', on_click=classify, disabled=False)
+
+dataset = st.file_uploader("UPLOAD TEXT FILE", type = ['csv'])
+if dataset is not None:
+    df_test = pd.read_csv(dataset, engine='python', delimiter = ',') 
+    df_test
+
+if 'clicked' not in st.session_state:
+    st.session_state.clicked = False
+
+def click_button():
+    st.session_state.clicked = True
+
+st.button('Classify', on_click=click_button)
+
+if st.session_state.clicked:
+    classify(df_test)
 
